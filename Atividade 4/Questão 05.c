@@ -10,51 +10,59 @@ struct informacao {
     float salario;
 };
 
-float media_Salarial (float valor, int a) {
-    int i;
-    float soma = 0, media;
-    for (i = 0; i < a; i++) {
-        soma += valor;
+void titulo ( ) {
+    system ("cls || clear");
+    printf ("COREBRAS! Calculadora de Média Salárial\n\n");
+}
+
+float media_Salarial (struct informacao funcionario[]) {
+    int a;
+    int contador;
+    float soma = 0;
+
+    for (a = 0; a < MAX_CHARACTER; a++) {
+      soma += funcionario[a].salario;
+      
+      if (funcionario[a].salario > 0) {
+        contador++; }
     }
-    return media = soma / (float) a;
+  
+    return soma / (float) contador;
 }
 
 int main ( ) {
     setlocale (LC_ALL, "");
-    
+
     int opcao;
-    int a = 0, contador;
+    int a = 0, b, contador;
     float media;
-    struct informacao funcionario;
+    struct informacao funcionario[MAX_CHARACTER];
 
     do {
+    titulo ( );
        printf ("Código | Descrição\n");
        printf ("   1   | Adicionar informação\n");
        printf ("   2   | Sair e eixbir\n\n");
        printf ("Selecione a opção desejada: ");
        scanf ("%d", &opcao);
-        
+
         switch (opcao) {
             case 1:
                 setbuf (stdin, 0);
                 printf ("Digite o nome do %dº funcionário: ", a+1);
-                gets (funcionario.nome);
+                gets (funcionario[a].nome);
                 printf ("Digite o nome do cargo: ");
-                gets (funcionario.cargo);
+                gets (funcionario[a].cargo);
                 printf ("Digite o valor do salario: ");
-                scanf ("%f", &funcionario.salario);
+                scanf ("%f", &funcionario[a].salario);
                 a++;
-                contador = a;
-               media = media_Salarial(funcionario.salario, contador);
-                
-                break;
-            
-            case 2 :
-                printf ("Média salarial dos programadores: %.2f\n", media_Salarial(funcionario.salario, contador));
+                //media = media_Salarial(funcionario);
+
                 break;
         }
-
     } while (opcao != 2);
 
+                printf ("Média salarial dos programadores: %.2f\n", media_Salarial(funcionario));
+                
     return 0;
 }
