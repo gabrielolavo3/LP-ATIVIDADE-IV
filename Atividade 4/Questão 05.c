@@ -62,7 +62,8 @@ int main ( ) {
         }
     } while (opcao != 2);
 
-                printf ("Média salarial dos programadores: %.2f\n", media_Salarial(funcionario));
+    titulo ( );
+    printf ("Média salarial dos programadores: %.2f\n", media_Salarial(funcionario));
                 
     return 0;
 }
