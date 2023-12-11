@@ -7,16 +7,16 @@
 struct informacao {
     char nome[MAX_CHARACTER];
     char cargo[MAX_CHARACTER];
-    float salario[200];
+    float salario;
 };
 
-float media_Salarial (float valor[], int a) {
+float media_Salarial (float valor, int a) {
     int i;
     float soma = 0, media;
     for (i = 0; i < a; i++) {
-        soma += valor[a];
+        soma += valor;
     }
-    return media = soma / a;
+    return media = soma / (float) a;
 }
 
 int main ( ) {
@@ -42,10 +42,10 @@ int main ( ) {
                 printf ("Digite o nome do cargo: ");
                 gets (funcionario.cargo);
                 printf ("Digite o valor do salario: ");
-                scanf ("%f", &funcionario.salario[a]);
+                scanf ("%f", &funcionario.salario);
                 a++;
                 contador = a;
-                media_Salarial(funcionario.salario, contador);
+               media = media_Salarial(funcionario.salario, contador);
                 
                 break;
             
