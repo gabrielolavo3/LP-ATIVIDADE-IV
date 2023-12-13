@@ -1,3 +1,11 @@
+/* 
+Descrição  : Criar uma struct que armazena as variáveis nome, preço e quantidade em estoque. Em seguida, desenvolva um menu 
+para facilitar a escolha das opções. Use funções necessárias para calcular o valor total em estoque do produto e para atualizar 
+a quantidade em estoque com base em uma compra! (função)
+Professor  : Carlos Anderson Santos de Jesus 
+Autor(a)   : Gabriel S. Olavo
+Data atual : 11/12/2023 */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -7,7 +15,7 @@
 
 #define MAX_CHARACTER 250
 
-struct compra {
+struct produto {
     int quantidade;
     float preco;
     char nome[MAX_CHARACTER];
@@ -23,8 +31,8 @@ int quantidadeProdutos (int quantia) {
     return quantidade_Estoque -= quantia;
 }
 
-float valor_Estoque (float dinheiro, float cifra) {
-    return dinheiro * cifra;
+float valor_Estoque (float dinheiro, float cifra, int estoque) {
+    return (dinheiro * cifra) * estoque;
 }
 
 int main ( ) {
@@ -34,7 +42,7 @@ int main ( ) {
 
     int opcao, acervo;
     float montante;
-    struct compra aquisicao;
+    struct produto aquisicao;
 
 // Solicitando dados
 
@@ -52,21 +60,31 @@ int main ( ) {
             fflush (stdin);
             printf ("\nDigite o nome do produto: ");
             gets (aquisicao.nome);
-            printf ("Digite a quantidade adquirida: ");
-            scanf ("%d", &aquisicao.quantidade);
+            
+            do {
+                printf ("Digite a quantidade adquirida: ");
+                scanf ("%d", &aquisicao.quantidade);
+
+                if (aquisicao.quantidade > 100) {
+                    printf ("\nQuantidade solicitada estar indisponível! Por favor, escolha uma quantidade menor\n\n"); }
+
+                if (aquisicao.quantidade <= 0) {
+                    printf ("\nQuantidade solicitada estar inválida! Por favor, escolha uma quantidade maior\n\n"); }
+
+            } while (aquisicao.quantidade <= 0 || aquisicao.quantidade > 100);
+
             printf ("Digite o valor do produto: ");
             scanf ("%f", &aquisicao.preco);
 
 // Passagem de parâmetro
 
             acervo = quantidadeProdutos(aquisicao.quantidade);
-            montante = valor_Estoque(aquisicao.preco, aquisicao.quantidade);
+            montante = valor_Estoque(aquisicao.preco, aquisicao.quantidade, acervo);
             break;
 
 // Tela de resultado
 
         case 2:
-
         titulo ( );
             printf ("Nome do produto: %s\n", aquisicao.nome);
             printf ("Quantidade no estoque: %d\n", acervo);
