@@ -85,12 +85,21 @@ int main ( ) {
 // Tela de resultado
 
         case 2:
+        if (acervo > 0) {
+
         titulo ( );
             printf ("Nome do produto: %s\n", aquisicao.nome);
             printf ("Quantidade no estoque: %d\n", acervo);
             printf ("Valor do estoque em produtos: R$ %.2f\n", montante);
             system ("pause");
-            break; 
+        
+        } else {
+            system ("cls || clear");
+            printf ("Não há dados para exibir. SELECIONE a 1º opção para adicionar informações de venda(s)!\n\n");
+            system ("pause");
+            opcao = 1;
+            
+            break; }
         
 // Tela de encerramento
 
